@@ -1,4 +1,5 @@
 /*
+ Copyright (c) 2018 Daniel Kucner <darkandan@windowslive.com>
  Copyright (c) 2014 Mathieu Laurendeau <mat.lau@laposte.net>
  License: GPLv3
  */
@@ -10,6 +11,7 @@
 #include "ds3.h"
 #include "ds4.h"
 #include "joystick.h"
+#include "keyboard.h"
 #include "xbox.h"
 #include "x360.h"
 #include "xone.h"
@@ -25,6 +27,7 @@
 typedef union
 {
   s_report_joystick js;
+  s_report_keyboard kbr;
   s_report_ds2 ds2;
   s_report_ds3 ds3;
   s_report_ds4 ds4;

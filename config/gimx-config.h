@@ -1,4 +1,5 @@
 /*
+ Copyright (c) 2018 Daniel Kucner <darkandan@windowslive.com>
  Copyright (c) 2010 Mathieu Laurendeau <mat.lau@laposte.net>
  License: GPLv3
  */
@@ -311,6 +312,7 @@ class configFrame: public wxFrame
         static const long ID_MENUITEMDFPS2;
         static const long ID_MENUITEMDFPPS2;
         static const long ID_MENUITEMGTFPS2;
+		static const long ID_MENUITEMKEYBOARD;
         static const long ID_MENUITEM8;
         static const long ID_MENUITEM9;
         static const long ID_MENUITEM10;
@@ -475,6 +477,7 @@ class configFrame: public wxFrame
         wxStaticText* ButtonTabDeviceType;
         wxMenuItem* MenuItemSave;
         wxMenuItem* MenuItemDfPs2;
+		wxMenuItem* MenuItemKeyboard;
         wxMenuItem* MenuItemReplaceKeyboard;
         wxMenuItem* MenuItemSetMouseDPI;
         wxMenuItem* MenuProfile4;

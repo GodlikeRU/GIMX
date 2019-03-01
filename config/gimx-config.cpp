@@ -1,4 +1,5 @@
 /*
+ Copyright (c) 2018 Daniel Kucner <darkandan@windowslive.com>
  Copyright (c) 2012 Mathieu Laurendeau <mat.lau@laposte.net>
  License: GPLv3
  */
@@ -218,6 +219,7 @@ const long configFrame::ID_MENUITEMG29PS4 = wxNewId();
 const long configFrame::ID_MENUITEMDFPS2 = wxNewId();
 const long configFrame::ID_MENUITEMDFPPS2 = wxNewId();
 const long configFrame::ID_MENUITEMGTFPS2 = wxNewId();
+const long configFrame::ID_MENUITEMKEYBOARD = wxNewId();
 const long configFrame::ID_MENUITEM8 = wxNewId();
 const long configFrame::ID_MENUITEM9 = wxNewId();
 const long configFrame::ID_MENUITEM10 = wxNewId();
@@ -1326,6 +1328,8 @@ configFrame::configFrame(wxString file,wxWindow* parent, wxWindowID id __attribu
     MenuType->Append(MenuItemDfpPs2);
     MenuItemGtfPs2 = new wxMenuItem(MenuType, ID_MENUITEMGTFPS2, _("GT Force PS2"), wxEmptyString, wxITEM_RADIO);
     MenuType->Append(MenuItemGtfPs2);
+	MenuItemKeyboard = new wxMenuItem(MenuType, ID_MENUITEMKEYBOARD, _("Keyboard"), wxEmptyString, wxITEM_RADIO);
+    MenuType->Append(MenuItemKeyboard);
     MenuBar1->Append(MenuType, _("Type"));
     MenuProfile = new wxMenu();
     MenuProfile1 = new wxMenuItem(MenuProfile, ID_MENUITEM8, _("1"), wxEmptyString, wxITEM_RADIO);
@@ -1441,6 +1445,7 @@ configFrame::configFrame(wxString file,wxWindow* parent, wxWindowID id __attribu
     Connect(ID_MENUITEMDFPS2,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&configFrame::OnMenuTypeItemSelected);
     Connect(ID_MENUITEMDFPPS2,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&configFrame::OnMenuTypeItemSelected);
     Connect(ID_MENUITEMGTFPS2,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&configFrame::OnMenuTypeItemSelected);
+	Connect(ID_MENUITEMKEYBOARD,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&configFrame::OnMenuTypeItemSelected);
     Connect(ID_MENUITEM8,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&configFrame::OnMenuItemConfiguration);
     Connect(ID_MENUITEM9,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&configFrame::OnMenuItemConfiguration);
     Connect(ID_MENUITEM10,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&configFrame::OnMenuItemConfiguration);
@@ -2417,6 +2422,9 @@ void configFrame::LoadControllerType()
       break;
     case C_TYPE_GTF_PS2:
       MenuType->Check(ID_MENUITEMGTFPS2, true);
+      break;
+	case C_TYPE_KEYBOARD:
+      MenuType->Check(ID_MENUITEMKEYBOARD, true);
       break;
     case C_TYPE_NONE:
       break;
@@ -4344,6 +4352,10 @@ void configFrame::OnMenuTypeItemSelected(wxCommandEvent& event __attribute__((un
   else if(MenuItemGtfPs2->IsChecked())
   {
     newType = C_TYPE_GTF_PS2;
+  }
+  else if(MenuItemKeyboard->IsChecked())
+  {
+    newType = C_TYPE_KEYBOARD;
   }
 
   Controller* controller = configFile.GetController(currentController);
